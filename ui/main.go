@@ -56,9 +56,8 @@ func (u *UI) HandleRequest(ctx *actor.Context, req httpserver.HttpRequest) (*htt
 	if len(splitPath) > 1 {
 		ext := splitPath[len(splitPath)-1]
 		ret.Header["Content-Type"] = httpserver.HeaderValues{mime.TypeByExtension("." + ext)}
+		_ = u.Logger.WriteLog(ctx, logging.LogEntry{Level: "debug", Text: "DETECTED MIME TYPE: " + ret.Header["Content-Type"][0]})
 	}
-
-	_ = u.Logger.WriteLog(ctx, logging.LogEntry{Level: "debug", Text: "DETECTED MIME TYPE: " + ret.Header["Content-Type"][0]})
 
 	ret.StatusCode = 200
 	ret.Body = page
