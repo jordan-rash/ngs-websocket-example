@@ -36,16 +36,17 @@ This repo includes 2 actors.  One holds the "business logic" for getting a joke 
 For the UI directory:
 ```
 cd ui/
+npm i
 go generate
 tinygo build --target wasi .
-wash claims sign --name ui ws.wasm --http_server -l
+wash claims sign --name ui ui.wasm --http_server -l
 ```
 
 For the joke directory:
 ```
 cd joke/
 tinygo build --target wasi .
-wash claims sign --name ui ws.wasm --http_client -m
+wash claims sign --name ui ws.wasm --http_client -g
 ```
 ### Start all the pieces
 You will need to start 3 providers from the wasmCloud Azure Registry
